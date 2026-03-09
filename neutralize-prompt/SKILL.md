@@ -141,14 +141,9 @@ The rewritten prompt must accomplish the same goal. Never drop the user's actual
 
 ## Analysis
 
-| # | Pattern Detected | Original Fragment | Rewrite Applied | Confidence | Expected Improvement |
-|---|-----------------|-------------------|-----------------|------------|---------------------|
-| 1 | ...             | "..."             | "..."           | High/Med/Low | ...              |
-
-Confidence levels:
-- High — clear pattern match, rewrite preserves intent
-- Medium — pattern detected but rewrite may alter nuance
-- Low — weak match, consider keeping original
+| # | Pattern Detected | Original Fragment | Rewrite Applied | Expected Improvement |
+|---|-----------------|-------------------|-----------------|---------------------|
+| 1 | ...             | "..."             | "..."           | ...                 |
 
 (If no patterns detected: "No improvement opportunities found. Original prompt is already well-structured for analysis.")
 ```

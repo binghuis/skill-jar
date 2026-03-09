@@ -58,7 +58,6 @@ cp -r neutralize-prompt/ .cursor/skills/neutralize-prompt/
 
 - **Minimal rewrite** — only change what clearly improves output quality
 - **Preserve intent** — never drop the user's actual objective
-- **Confidence scoring** — each rewrite includes High/Medium/Low confidence for user judgment
 - **Pass-through by default** — action and explanation prompts are never touched
 
 ## Inspiration

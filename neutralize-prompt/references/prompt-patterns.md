@@ -127,11 +127,11 @@ Real prompts often trigger multiple patterns at once. Apply the minimal rewrite 
 
 **Original:** "这个方案应该没问题吧？大概 2 周能上线？"
 
-| # | Pattern | Fragment | Rewrite | Confidence |
-|---|---------|----------|---------|------------|
-| 1 | Preset conclusion | "应该没问题" | Remove — open the investigation | High |
-| 2 | Binary narrowing | "没问题吧？" | Expand to multi-dimensional evaluation | High |
-| 3 | Anchoring estimate | "大概 2 周" | Remove anchor, request independent estimate | Medium |
+| # | Pattern | Fragment | Rewrite |
+|---|---------|----------|---------|
+| 1 | Preset conclusion | "应该没问题" | Remove — open the investigation |
+| 2 | Binary narrowing | "没问题吧？" | Expand to multi-dimensional evaluation |
+| 3 | Anchoring estimate | "大概 2 周" | Remove anchor, request independent estimate |
 
 **Rewritten:** "从可行性、性能、安全等维度评估这个方案，并独立估算上线所需时间，按阶段拆分。"
 
@@ -141,10 +141,10 @@ Note: three patterns collapsed into one concise rewrite rather than three separa
 
 **Original:** "Is this architecture good enough?"
 
-| # | Pattern | Fragment | Rewrite | Confidence |
-|---|---------|----------|---------|------------|
-| 1 | Binary narrowing | "good enough?" | Expand to structured evaluation | High |
-| 2 | Missing dimensions | No dimensions specified | Add scalability, cost, operational complexity | High |
+| # | Pattern | Fragment | Rewrite |
+|---|---------|----------|---------|
+| 1 | Binary narrowing | "good enough?" | Expand to structured evaluation |
+| 2 | Missing dimensions | No dimensions specified | Add scalability, cost, operational complexity |
 
 **Rewritten:** "Evaluate this architecture across scalability, cost, and operational complexity. Identify strengths and areas that need improvement."
 
@@ -152,10 +152,10 @@ Note: three patterns collapsed into one concise rewrite rather than three separa
 
 **Original:** "Confirm this API can handle 10k requests per second — we tested it at about 8k."
 
-| # | Pattern | Fragment | Rewrite | Confidence |
-|---|---------|----------|---------|------------|
-| 1 | Preset conclusion | "Confirm" | Replace with open evaluation | High |
-| 2 | Anchoring estimate | "about 8k" | Detected but rewrite cost exceeds benefit — 8k is empirical data, not a guess | Low |
+| # | Pattern | Fragment | Rewrite |
+|---|---------|----------|---------|
+| 1 | Preset conclusion | "Confirm" | Replace with open evaluation |
+| 2 | Anchoring estimate | "about 8k" | Detected but rewrite cost exceeds benefit — 8k is empirical data, not a guess |
 
 **Rewritten:** "Evaluate whether this API can handle 10k requests per second. Analyze current throughput characteristics and identify bottlenecks."
 
