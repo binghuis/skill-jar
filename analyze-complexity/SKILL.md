@@ -23,7 +23,7 @@ This skill uses two external tools for precise analysis. Check availability befo
 | Tool | Purpose | Install |
 |------|---------|---------|
 | **scc** | Fast code counting: LOC, comments, blanks, COCOMO complexity | `brew install scc` (macOS). User must install manually. |
-| **madge** | Module dependency graph, circular import detection, orphan files | Auto-installed via project's package manager (pnpm/yarn/npm) if missing. |
+| **madge** | Module dependency graph, circular import detection, orphan files | Run via `npx madge`. No install needed. |
 
 ## Instructions
 
@@ -38,21 +38,15 @@ This skill uses two external tools for precise analysis. Check availability befo
 
 ## Workflow
 
-### 0. Tool Check & Install
+### 0. Tool Check
 
-Check tool availability:
+Check scc availability:
 
 ```bash
 command -v scc && scc --version || echo "MISSING: scc"
-command -v madge && madge --version || echo "MISSING: madge"
 ```
 
-**If madge is MISSING**: Auto-install using the project's package manager. Detect from lockfiles:
-- `pnpm-lock.yaml` → `pnpm add -g madge`
-- `yarn.lock` → `yarn global add madge`
-- `package-lock.json` or none → `npm install -g madge`
-
-Run the install command in the project root. Re-check after install.
+**madge** — always run via `npx madge` (no global install required). npx downloads it on first use and caches it automatically.
 
 **If scc is MISSING**: scc requires system-level install. Prompt the user to run `brew install scc` (macOS) or see https://github.com/boyter/scc#install. Do not proceed with full analysis until scc is available (or skip scc-dependent sections and note in the report).
 
@@ -85,13 +79,13 @@ Run madge to analyze the dependency graph:
 
 ```bash
 # Circular dependency detection
-madge --circular --extensions ts,tsx,js,jsx,vue <src_dir>
+npx madge --circular --extensions ts,tsx,js,jsx,vue <src_dir>
 
 # Full dependency graph as JSON
-madge --json --extensions ts,tsx,js,jsx,vue <src_dir>
+npx madge --json --extensions ts,tsx,js,jsx,vue <src_dir>
 
 # Orphan files (no importers)
-madge --orphans --extensions ts,tsx,js,jsx,vue <src_dir>
+npx madge --orphans --extensions ts,tsx,js,jsx,vue <src_dir>
 ```
 
 If a `tsconfig.json` exists, add `--ts-config tsconfig.json` for alias resolution.
@@ -122,7 +116,7 @@ Extract from the output:
 
 ### 7. Type Safety & Code Quality Signals
 
-- Check for TypeScript adoption: strict mode, `any` usage count, type coverage.
+- Check for TypeScript adoption: strict mode, `any` usage ratio (count of `any` / total TS LOC), type coverage.
 - Count ESLint/Prettier rule overrides and disabled rules.
 - Detect test coverage config; estimate test file ratio (`*.test.*` / `*.spec.*` vs source).
 
@@ -137,16 +131,16 @@ Produce a Markdown report with the following structure:
 > Tools used: scc vX.X, madge vX.X
 
 ## Summary
-| Dimension                  | Score (1-5) | Notes |
-|----------------------------|-------------|-------|
-| Project Scale              |             |       |
-| Dependency Weight          |             |       |
-| Component Coupling         |             |       |
-| State Management           |             |       |
-| Routing Complexity         |             |       |
-| Build Configuration        |             |       |
-| Type Safety & Code Quality |             |       |
-| **Overall**                |             |       |
+| Dimension                  | Weight | Score (1-5) | Notes |
+|----------------------------|--------|-------------|-------|
+| Component Coupling         | 2.0    |             |       |
+| State Management           | 2.0    |             |       |
+| Type Safety & Code Quality | 1.5   |             |       |
+| Project Scale              | 1.0    |             |       |
+| Dependency Weight          | 1.0    |             |       |
+| Routing Complexity         | 0.75   |             |       |
+| Build Configuration        | 0.75   |             |       |
+| **Overall (weighted)**     |        |             |       |
 
 ## Top 3 Refactoring Hotspots
 1. **<file/module>** — reason

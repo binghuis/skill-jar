@@ -93,19 +93,35 @@ Parse the `scc --format json` output. Sum the `Code` field across all languages 
 
 ## Type Safety & Code Quality
 
+`any` density = count of explicit `any` / total TypeScript LOC × 1000 (per-mille).
+
 | Score | Criteria |
 |-------|----------|
-| 1 | Full TypeScript strict, high test coverage (> 80%), clean lint |
-| 2 | TypeScript strict, moderate tests (50-80%), few lint overrides |
-| 3 | TypeScript non-strict or partial adoption, some tests (20-50%) |
-| 4 | Mixed JS/TS, many `any` usages (> 50), low test coverage (< 20%) |
+| 1 | Full TypeScript strict, `any` density < 1‰, test coverage > 80%, clean lint |
+| 2 | TypeScript strict, `any` density < 3‰, tests 50-80%, few lint overrides |
+| 3 | TypeScript non-strict or partial adoption, `any` density 3-8‰, tests 20-50% |
+| 4 | Mixed JS/TS, `any` density > 8‰, test coverage < 20% |
 | 5 | Pure JS with no types, no tests, many disabled lint rules |
 
 ## Overall Score Calculation
 
+Dimensions are weighted by their impact on refactoring difficulty:
+
+| Dimension | Weight | Tier |
+|-----------|--------|------|
+| Component Coupling | 2.0 | Core |
+| State Management | 2.0 | Core |
+| Type Safety & Code Quality | 1.5 | Core |
+| Project Scale | 1.0 | Supporting |
+| Dependency Weight | 1.0 | Supporting |
+| Routing Complexity | 0.75 | Supporting |
+| Build Configuration | 0.75 | Supporting |
+
 ```
-overall = round(mean(all_dimension_scores))
+overall = round(weighted_sum / total_weight)
 ```
+
+Core dimensions (Coupling, State, Type Safety) carry the most weight because they directly determine how hard it is to change code safely. Supporting dimensions provide context but rarely block refactoring on their own.
 
 Interpretation:
 - **1-2**: Low complexity — straightforward to refactor.
