@@ -11,17 +11,17 @@ feature-slicing/
 ├── SKILL.md                      # Core rules — the AI reads this
 ├── README.md                     # You are here
 └── references/
-    ├── IMPLEMENTATION.md         # Code patterns for each layer
-    ├── NEXTJS.md                 # Next.js App Router / Pages Router integration
-    └── MIGRATION.md              # Incremental migration strategy
+    ├── implementation.md         # Code patterns for each layer
+    ├── nextjs.md                 # Next.js App Router / Pages Router integration
+    └── migration.md              # Incremental migration strategy
 ```
 
 | File | Purpose |
 |------|---------|
 | `SKILL.md` | Architecture rules, layer hierarchy, import constraints, decision trees, naming conventions |
-| `IMPLEMENTATION.md` | Complete code examples: entity, feature, widget, page, shared, app layer patterns |
-| `NEXTJS.md` | How to reconcile FSD with Next.js file-based routing (App Router & Pages Router) |
-| `MIGRATION.md` | Step-by-step guide for incrementally migrating a legacy codebase to FSD |
+| `implementation.md` | Complete code examples: entity, feature, widget, page, shared, app layer patterns |
+| `nextjs.md` | How to reconcile FSD with Next.js file-based routing (App Router & Pages Router) |
+| `migration.md` | Step-by-step guide for incrementally migrating a legacy codebase to FSD |
 
 ## Key Rules at a Glance
 
@@ -56,18 +56,18 @@ The skill ships with generic examples. Adapt the following areas to match your p
 
 ### State Management
 
-`SKILL.md` and `IMPLEMENTATION.md` use **Zustand** in `.store.ts` examples.
+`SKILL.md` and `implementation.md` use **Zustand** in `.store.ts` examples.
 
 If your project uses Redux, Jotai, Pinia, MobX, or another library:
 - Update the `.store.ts` description in `SKILL.md` (model/ File Naming Convention table)
-- Replace store examples in `IMPLEMENTATION.md` (features/auth/model/auth.store.ts, etc.)
+- Replace store examples in `implementation.md` (features/auth/model/auth.store.ts, etc.)
 
 ### UI Library
 
-`IMPLEMENTATION.md` uses plain JSX + Tailwind CSS for `shared/ui` components.
+`implementation.md` uses plain JSX + Tailwind CSS for `shared/ui` components.
 
 If your project uses Ant Design, MUI, shadcn/ui, or another component library:
-- Replace `shared/ui` component examples in `IMPLEMENTATION.md`
+- Replace `shared/ui` component examples in `implementation.md`
 - The FSD rules themselves don't change — only the code samples
 
 ### API Layer
@@ -75,7 +75,7 @@ If your project uses Ant Design, MUI, shadcn/ui, or another component library:
 Examples use hand-written **Axios** + **TanStack React Query** hooks.
 
 If your project uses Orval, openapi-typescript, tRPC, or SWR:
-- Update `api/` segment examples in `IMPLEMENTATION.md`
+- Update `api/` segment examples in `implementation.md`
 - If using code generation (e.g. Orval), note in `SKILL.md` that `api/` files may be auto-generated
 
 ### Routing
@@ -84,16 +84,16 @@ Examples use `react-router-dom`. If your project uses a different router:
 
 | Router | Action |
 |--------|--------|
-| Next.js App Router | See `references/NEXTJS.md` (already included) |
-| React Router 7 | Update loader/action patterns in `IMPLEMENTATION.md` |
-| TanStack Router | Replace route config examples in `IMPLEMENTATION.md` |
+| Next.js App Router | See `references/nextjs.md` (already included) |
+| React Router 7 | Update loader/action patterns in `implementation.md` |
+| TanStack Router | Replace route config examples in `implementation.md` |
 
 ### CSS Strategy
 
 Examples use **Tailwind CSS** utility classes.
 
 If your project uses CSS Modules, styled-components, or vanilla-extract:
-- Update component examples in `IMPLEMENTATION.md` to reflect your styling approach
+- Update component examples in `implementation.md` to reflect your styling approach
 - The FSD layer/segment rules are CSS-agnostic
 
 ### Component Declaration Style

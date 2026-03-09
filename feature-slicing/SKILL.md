@@ -517,9 +517,9 @@ Hooks and actions are **implementation techniques**, not segments. Place them by
 
 | File | Purpose |
 |------|---------|
-| [references/IMPLEMENTATION.md](references/IMPLEMENTATION.md) | Code patterns: entities, features, widgets, pages, shared, React Query |
-| [references/NEXTJS.md](references/NEXTJS.md) | App Router integration, page re-exports, server actions |
-| [references/MIGRATION.md](references/MIGRATION.md) | Incremental migration strategy, common patterns |
+| [references/implementation.md](references/implementation.md) | Code patterns: entities, features, widgets, pages, shared, React Query |
+| [references/nextjs.md](references/nextjs.md) | App Router integration, page re-exports, server actions |
+| [references/migration.md](references/migration.md) | Incremental migration strategy, common patterns |
 
 ## Resources
 
