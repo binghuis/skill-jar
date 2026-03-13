@@ -136,9 +136,9 @@ Additional segments as needed:
 
 **Naming:** Use purpose-driven names (`api/`, `model/`) not essence-based (`hooks/`, `types/`).
 
-### model/ File Naming Convention
+### File Naming Convention (Heterogeneous Directories)
 
-`model/` is the only segment that holds multiple distinct file types. Use suffix conventions to distinguish them:
+When a directory contains **multiple distinct file types** (heterogeneous), use suffix conventions to distinguish them. This applies to any segment or co-located component directory — not just `model/`.
 
 | Suffix | Purpose | Example |
 |--------|---------|---------|
@@ -146,11 +146,13 @@ Additional segments as needed:
 | `.schema.ts` | Zod / Yup validation rules | `user.schema.ts` |
 | `.store.ts` | Zustand store (state + actions) | `auth.store.ts` |
 | `.const.ts` | `as const` constants, label/color maps | `task-status.const.ts` |
-| `.logic.ts` | Pure business logic, calculations | `order.logic.ts` |
+| `.logic.ts` | Pure functions, calculations | `order.logic.ts` |
 
 **Format:** `{business-name}.{category}.ts` — kebab-case business name + category suffix.
 
-Other segments (`ui/`, `api/`, `lib/`, `config/`) do NOT need suffixes — their contents are homogeneous.
+**Rule:** Only use suffixes from the table above — do not invent new ones (e.g. `.util.ts`, `.helpers.ts`, `.utils.ts` are forbidden).
+
+Directories whose files are **homogeneous** (e.g. a `ui/` folder containing only React components) do not need suffixes.
 
 ---
 
